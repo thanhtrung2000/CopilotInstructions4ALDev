@@ -41,22 +41,22 @@ This framework is intended for:
 **User guide, quick reference, governance notes, prompt catalog, and learnings log**
 docs/
 
-Core Principles
+## Core Principles
 
-Copilot output is a draft, not final approved code.
-Developers must compile, test, and review generated code.
-Analyzer compliance is mandatory.
-Use Business Central extension-safe patterns.
-Prefer small, safe, maintainable AL changes.
-Use labels, captions, tooltips, and DataClassification where relevant.
-Do not bypass standard Business Central validation, posting, or security logic.
-Do not paste secrets, credentials, or sensitive customer data into prompts.
+1. Copilot output is a draft, not final approved code.
+2. Developers must compile, test, and review generated code.
+3. Analyzer compliance is mandatory.
+4. Use Business Central extension-safe patterns.
+5. Prefer small, safe, maintainable AL changes.
+6. Use labels, captions, tooltips, and DataClassification where relevant.
+7. Do not bypass standard Business Central validation, posting, or security logic.
+8. Do not paste secrets, credentials, or sensitive customer data into prompts.
 
-Recommended Adoption Flow
+## Recommended Adoption Flow
 
-Copy this framework into a Business Central AL repository.
-Define project-specific object ID ranges and naming rules.
-Enable AL analyzers.
-Use prompt templates for daily AL development.
-Apply the pull request checklist before merging changes.
-Update docs/copilot-learnings.md with common Copilot mistakes and fixes.
+1. Copy this framework into a Business Central AL repository.
+2. Define project-specific object ID ranges and naming rules.
+3. Enable AL analyzers.
+4. Use prompt templates for daily AL development.
+5. Apply the pull request checklist before merging changes.
+6. Update docs/copilot-learnings.md with common Copilot mistakes and fixes.
