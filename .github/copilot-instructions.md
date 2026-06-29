@@ -56,9 +56,9 @@ Always follow these principles when generating or reviewing AL code:
    - `tableextension`
    - `pageextension`
    - `enumextension`
-   - event subscribers
-   - interfaces
-   - isolated codeunits
+   - `event subscribers`
+   - `interfaces`
+   - `isolated codeunits`
 4. Generate maintainable AL code that is easy to understand and review.
 5. Keep business logic separated from UI logic where practical.
 6. Prefer small, focused procedures over large procedures.
@@ -160,9 +160,9 @@ If no project convention is provided, use these defaults:
 
 ### 6.1 Objects
 
-Use clear business-oriented names.
-Avoid vague names such as Management, Handler, or Helper unless the purpose is clear.
-Prefer names that describe the responsibility of the object.
+- Use clear business-oriented names.
+- Avoid vague names such as Management, Handler, or Helper unless the purpose is clear.
+- Prefer names that describe the responsibility of the object.
 
 Examples:
 
@@ -174,11 +174,11 @@ page 50100 "Customer Reward Entries"
 
 ### 6.2 Variables
 
-Use meaningful variable names.
-Avoid single-letter variables except in very small local scopes.
-Prefix temporary record variables with Temp.
-Do not use misleading abbreviations.
-Keep variable scope as narrow as possible.
+- Use meaningful variable names.
+- Avoid single-letter variables except in very small local scopes.
+- Prefix temporary record variables with `Temp`.
+- Do not use misleading abbreviations.
+- Keep variable scope as narrow as possible.
 
 Example:
 
@@ -191,9 +191,9 @@ var
 
 ### 6.3 Procedures
 
-Use verb-based names.
-Make procedure names describe intent.
-Keep procedures focused on one responsibility.
+- Use verb-based names.
+- Make procedure names describe intent.
+- Keep procedures focused on one responsibility.
 
 Examples:
 
@@ -425,21 +425,22 @@ Suggested tests or validation scenarios.
 
 Review for:
 
-Compile correctness
-Analyzer compliance
-Naming consistency
-File structure
-Data access patterns
-Performance risks
-Security and permissions
-Upgrade safety
-UI text and labels
-Captions and tooltips
-Test coverage
-Documentation gaps
+- Compile correctness
+- Analyzer compliance
+- Naming consistency
+- File structure
+- Data access patterns
+- Performance risks
+- Security and permissions
+- Upgrade safety
+- UI text and labels
+- Captions and tooltips
+- Test coverage
+- Documentation gaps
 
-18. Output Format for Code Generation
-    When generating AL code, return output in this structure:
+## 18. Output Format for Code Generation
+
+When generating AL code, return output in this structure:
 
 ```text
 ## Summary
@@ -491,17 +492,18 @@ Developer preferences must not override:
 
 If a developer preference conflicts with mandatory rules, follow the mandatory rules.
 
-20. Safe Defaults When Context Is Missing
-    If the user does not provide enough context:
+## 20. Safe Defaults When Context Is Missing
 
-State assumptions clearly.
-Use safe and standard AL patterns.
-Avoid inventing business rules.
-Avoid inventing object ID ranges.
-Avoid inventing project prefixes.
-Avoid destructive or risky changes.
-Ask for missing details only when the code cannot be safely generated.
-Prefer reusable and extension-safe design.
+If the user does not provide enough context:
+
+- State assumptions clearly.
+- Use safe and standard AL patterns.
+- Avoid inventing business rules.
+- Avoid inventing object ID ranges.
+- Avoid inventing project prefixes.
+- Avoid destructive or risky changes.
+  Ask for missing details only when the code cannot be safely generated.
+  Prefer reusable and extension-safe design.
 
 For object IDs, use placeholders if the approved range is unknown:
 
@@ -549,16 +551,16 @@ Do not suggest or generate code that:
 
 Before finalizing any generated AL solution, check:
 
-Does the code follow the Business Central extension model?
-Does the code avoid direct base application modification?
-Are object names meaningful and project-consistent?
-Are object IDs from the approved range or clearly marked as placeholders?
-Is one object per file recommended?
-Are captions, tooltips, and labels used where relevant?
-Are permissions considered?
-Is DataClassification included for table fields?
-Are analyzer concerns considered?
-Are performance-sensitive data access patterns reviewed?
-Are tests or test recommendations included?
-Are assumptions clearly stated?
-Is the output ready for developer review?
+- [ ] Does the code follow the Business Central extension model?
+- [ ] Does the code avoid direct base application modification?
+- [ ] Are object names meaningful and project-consistent?
+- [ ] Are object IDs from the approved range or clearly marked as placeholders?
+- [ ] Is one object per file recommended?
+- [ ] Are captions, tooltips, and labels used where relevant?
+- [ ] Are permissions considered?
+- [ ] Is DataClassification included for table fields?
+- [ ] Are analyzer concerns considered?
+- [ ] Are performance-sensitive data access patterns reviewed?
+- [ ] Are tests or test recommendations included?
+- [ ] Are assumptions clearly stated?
+- [ ] Is the output ready for developer review?
