@@ -66,6 +66,19 @@ Documentation
 - [ ] Setup/configuration impact documented.
 - [ ] Known limitations documented.
 
+Instruction Framework Checklist
+
+- [ ] Global instructions in `.github/copilot-instructions.md` were considered.
+- [ ] Project-specific instructions in `.github/instructions/` were considered where applicable.
+- [ ] Prompt templates in `.github/prompts/` were used or followed where applicable.
+- [ ] Naming rules were followed.
+- [ ] Object ID range rules were followed.
+- [ ] Analyzer rules were followed.
+- [ ] Dependency assumptions were validated.
+- [ ] Permission impact was reviewed.
+- [ ] Testing expectations were considered.
+- [ ] Localization rules were followed where relevant.
+
 Notes for Reviewer
 <Add reviewer notes here>Show more lines
 ```

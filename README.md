@@ -26,20 +26,41 @@ This framework is intended for:
 
 ## What This Repository Contains
 
-**Core mandatory GitHub Copilot instructions for AL development**
-.github/copilot-instructions.md
+This repository contains a reusable GitHub Copilot instruction framework for Microsoft Dynamics 365 Business Central AL development.
 
-**Reusable prompt templates for common AL tasks**
-.github/prompts/
+The framework is organized into global instructions, project-specific instructions, reusable prompts, analyzer configuration, and supporting documentation.
 
-**Recommended Visual Studio Code AL analyzer settings**
-.vscode/settings.json
+`.github/copilot-instructions.md`
+**Global mandatory Copilot instructions for AL development**
 
-**Starter AL analyzer ruleset**
-.vscode/al.ruleset.json
+`.github/copilot-instructions.md`
+**Project-specific instruction templates for context, naming, object ranges, analyzers, dependencies, permissions, testing, and localization**
 
+`.github/prompts/`
+**Reusable prompt templates for common AL development tasks**
+
+`.vscode/settings.json`
+**Recommended Visual Studio Code settings for AL analyzer configuration**
+
+`.vscode/al.ruleset.json`
+**Starter AL analyzer ruleset with documented rule actions and justifications**
+
+`docs/`
 **User guide, quick reference, governance notes, prompt catalog, and learnings log**
-docs/
+
+## Framework Layering
+
+The framework uses a layered structure.
+
+```text
+Global instructions
+  ↓
+Project-specific instructions
+  ↓
+Reusable prompts
+  ↓
+Developer task request
+```
 
 ## Core Principles
 

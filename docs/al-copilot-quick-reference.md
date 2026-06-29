@@ -49,3 +49,26 @@ Copilot should return:
 3. Nice-to-have improvements
 4. Suggested code
 5. Test recommendations
+
+## Instruction Layers Quick Reference
+
+| Layer | Location | Purpose |
+|---|---|---|
+| Global instructions | `.github/copilot-instructions.md` | Mandatory AL development rules for all projects |
+| Project-specific instructions | `.github/instructions/*.instructions.md` | Project context, naming, object IDs, dependencies, permissions, testing, localization |
+| Prompt templates | `.github/prompts/*.prompt.md` | Reusable task workflows for code generation, review, analyzer fixes, and documentation |
+| Developer request | Copilot Chat / IDE prompt | Immediate task-specific requirement |
+
+## Project-Specific Instruction Files
+
+| File | Purpose |
+|---|---|
+| `project-template.instructions.md` | Main project-specific template and rule priority |
+| `project-context.instructions.md` | Project summary, app info, workspace structure, development mode |
+| `project-naming.instructions.md` | Object, file, variable, procedure, label, and test naming |
+| `project-object-ranges.instructions.md` | Approved object ID ranges and used ID guidance |
+| `project-analyzers.instructions.md` | Analyzer set and suppression rules |
+| `project-dependencies.instructions.md` | App dependencies, symbols, APIs, and event reference rules |
+| `project-permissions.instructions.md` | Permission model, security, and least-privilege expectations |
+| `project-testing.instructions.md` | Test strategy and test recommendation format |
+| `project-localization.instructions.md` | Captions, labels, tooltips, and translation rules |

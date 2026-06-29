@@ -46,7 +46,50 @@ These instructions are mandatory unless a project-specific instruction file expl
 
 ---
 
-## 3. Core Development Principles
+## 3. Instruction Layering
+
+This repository may contain multiple instruction layers.
+
+Apply them in this order:
+
+1. Global repository instructions from `.github/copilot-instructions.md`
+2. Project-specific instructions from `.github/instructions/*.instructions.md`
+3. Task-specific prompt templates from `.github/prompts/*.prompt.md`
+4. Developer request context
+
+The global instructions define mandatory AL development standards.
+
+Project-specific instructions extend the global instructions with project context such as naming rules, object ID ranges, dependencies, analyzers, permissions, testing, and localization.
+
+Prompt templates define reusable task workflows.
+
+If instructions conflict, follow the stricter and safer rule.
+
+Project-specific instructions must not weaken:
+
+- Analyzer compliance
+- Security rules
+- Permission review
+- Extension-safe design
+- Upgrade safety
+- Testing expectations
+- Maintainability requirements
+
+If project-specific values are missing, do not invent them. Use placeholders such as:
+
+```text
+<ProjectPrefix>
+<ObjectId>
+<ObjectIdRange>
+<PermissionSetName>
+<DependencyAppName>
+```
+
+Ask for confirmation only when code cannot be safely generated without the missing value.
+
+---
+
+## 4. Core Development Principles
 
 Always follow these principles when generating or reviewing AL code:
 
@@ -71,7 +114,7 @@ Always follow these principles when generating or reviewing AL code:
 
 ---
 
-## 4. Microsoft AL Analyzer Compliance
+## 5. Microsoft AL Analyzer Compliance
 
 Before finalizing any AL code, consider analyzer compliance.
 
@@ -93,9 +136,9 @@ Do not silently ignore analyzer warnings or errors.
 
 ---
 
-## 5. Required AL Coding Standards
+## 6. Required AL Coding Standards
 
-### 5.1 Object Design
+### 6.1 Object Design
 
 When creating AL objects:
 
@@ -107,7 +150,7 @@ When creating AL objects:
 - Include permission impact when creating new tables, pages, reports, queries, or codeunits.
 - Use extensibility-friendly design where appropriate.
 
-### 5.2 File Naming
+### 6.2 File Naming
 
 Use file names that include the object name and object type.
 
@@ -124,7 +167,7 @@ CustomerRewardPermissions.PermissionSet.al
 
 If the project uses a specific prefix or suffix, follow that convention consistently.
 
-### 5.3 Folder Structure
+### 6.3 Folder Structure
 
 Use the project folder structure if one exists.
 
@@ -152,13 +195,13 @@ res/
   Design/
 ```
 
-## 6. Naming Conventions
+## 7. Naming Conventions
 
 Follow the project naming convention first.
 
 If no project convention is provided, use these defaults:
 
-### 6.1 Objects
+### 7.1 Objects
 
 - Use clear business-oriented names.
 - Avoid vague names such as Management, Handler, or Helper unless the purpose is clear.
@@ -166,13 +209,13 @@ If no project convention is provided, use these defaults:
 
 Examples:
 
-```text
+```al
 codeunit 50100 "Customer Reward Mgt."
 table 50100 "Customer Reward Entry"
 page 50100 "Customer Reward Entries"
 ```
 
-### 6.2 Variables
+### 7.2 Variables
 
 - Use meaningful variable names.
 - Avoid single-letter variables except in very small local scopes.
@@ -189,7 +232,7 @@ var
     RewardAmount: Decimal;
 ```
 
-### 6.3 Procedures
+### 7.3 Procedures
 
 - Use verb-based names.
 - Make procedure names describe intent.
@@ -203,7 +246,7 @@ procedure CreateRewardEntry(CustomerNo: Code[20]; RewardAmount: Decimal)
 procedure ValidateRewardEligibility(Customer: Record Customer)
 ```
 
-## 7. UI and User-Facing Text Rules
+## 8. UI and User-Facing Text Rules
 
 For pages, page extensions, reports, request pages, and actions:
 
@@ -231,7 +274,7 @@ Avoid:
 Message('Customer reward entry has been created.');
 ```
 
-## 8. Data Access and Performance Rules
+## 9. Data Access and Performance Rules
 
 When generating AL code that reads or modifies data:
 
@@ -249,7 +292,7 @@ When generating AL code that reads or modifies data:
 
 When performance impact is uncertain, explain the risk and suggest a safer approach.
 
-## 9. Business Logic Rules
+## 10. Business Logic Rules
 
 When implementing business logic:
 
@@ -264,7 +307,7 @@ When implementing business logic:
 9. Consider upgrade impact when modifying table schema or enum values.
 10. State assumptions for unclear business rules.
 
-## 10. Event Subscriber Rules
+## 11. Event Subscriber Rules
 
 When generating event subscriber code:
 
@@ -292,7 +335,7 @@ codeunit 50100 "Customer Reward Subscriber"
 }
 ```
 
-## 11. Error Handling Rules
+## 12. Error Handling Rules
 
 When generating error handling:
 
@@ -316,7 +359,7 @@ var
     end;
 ```
 
-## 12. Security and Permission Rules
+## 13. Security and Permission Rules
 
 When creating or modifying objects:
 
@@ -331,7 +374,7 @@ When creating or modifying objects:
 
 For new tables, always include DataClassification for fields.
 
-## 13. API and Integration Rules
+## 14. API and Integration Rules
 
 When generating API pages, queries, or integration code:
 
@@ -346,7 +389,7 @@ When generating API pages, queries, or integration code:
 9. Use clear error messages for integration failures.
 10. Do not hardcode endpoint-specific values unless explicitly required.
 
-## 14. Testing Rules
+## 15. Testing Rules
 
 When generating business logic, also suggest test coverage.
 For test codeunits:
@@ -370,7 +413,7 @@ Recommended tests:
 - Verify no reward entry is created for blocked customer.
 - Verify expected error is raised when required setup is missing.
 
-## 15. Documentation Rules
+## 16. Documentation Rules
 
 When generating documentation:
 
@@ -387,7 +430,7 @@ When generating documentation:
 
 Do not over-comment simple AL code.
 
-## 16. Refactoring Rules
+## 17. Refactoring Rules
 
 When refactoring AL code:
 
@@ -402,7 +445,7 @@ When refactoring AL code:
 9. Suggest tests for changed behavior.
 10. Keep the refactored code analyzer-friendly.
 
-## 17. Code Review Rules
+## 18. Code Review Rules
 
 When reviewing AL code, return findings in this structure:
 
@@ -438,7 +481,7 @@ Review for:
 - Test coverage
 - Documentation gaps
 
-## 18. Output Format for Code Generation
+## 19. Output Format for Code Generation
 
 When generating AL code, return output in this structure:
 
@@ -467,7 +510,7 @@ List practical test scenarios.
 
 If the user asks for “code only”, provide only the code.
 
-## 19. Customization Rules
+## 20. Customization Rules
 
 Developer preferences may customize:
 
@@ -492,7 +535,7 @@ Developer preferences must not override:
 
 If a developer preference conflicts with mandatory rules, follow the mandatory rules.
 
-## 20. Safe Defaults When Context Is Missing
+## 21. Safe Defaults When Context Is Missing
 
 If the user does not provide enough context:
 
@@ -517,7 +560,7 @@ For prefixes, use placeholders if the project prefix is unknown:
 <Prefix>CustomerReward.Table.al
 ```
 
-## 21. Prohibited Suggestions
+## 22. Prohibited Suggestions
 
 Do not suggest or generate code that:
 
@@ -534,7 +577,7 @@ Do not suggest or generate code that:
 11. Uses unclear object names or placeholder names in final code.
 12. Ignores project-specific naming or object ID rules.
 
-## 22. AL Copilot Golden Rules
+## 23. AL Copilot Golden Rules
 
 1. Copilot output is a draft, not final approved code.
 2. Generated AL must compile before review.
@@ -547,7 +590,7 @@ Do not suggest or generate code that:
 9. Document assumptions and limitations.
 10. If uncertain, state assumptions clearly before generating code.
 
-## 23. Final Quality Checklist
+## 24. Final Quality Checklist
 
 Before finalizing any generated AL solution, check:
 
