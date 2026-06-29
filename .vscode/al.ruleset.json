@@ -1,0 +1,51 @@
+{
+  "name": "Business Central AL Copilot Starter Ruleset",
+  "description": "Starter ruleset for AL development with GitHub Copilot. Suppressions must be justified and reviewed.",
+  "rules": [
+    {
+      "id": "AA0005",
+      "action": "Warning",
+      "justification": "Use BEGIN..END consistently for compound statements."
+    },
+    {
+      "id": "AA0008",
+      "action": "Warning",
+      "justification": "Function calls should use parentheses for readability."
+    },
+    {
+      "id": "AA0018",
+      "action": "Warning",
+      "justification": "Control statements should start on a new line for readability."
+    },
+    {
+      "id": "AA0021",
+      "action": "Warning",
+      "justification": "Variable declarations should be ordered by type."
+    },
+    {
+      "id": "AA0072",
+      "action": "Info",
+      "justification": "Variable and parameter naming should be reviewed for clarity."
+    },
+    {
+      "id": "AA0073",
+      "action": "Warning",
+      "justification": "Temporary variables should be prefixed with Temp."
+    },
+    {
+      "id": "AA0136",
+      "action": "Warning",
+      "justification": "Unreachable code should be removed."
+    },
+    {
+      "id": "AA0137",
+      "action": "Warning",
+      "justification": "Unused variables should be removed."
+    },
+    {
+      "id": "AA0139",
+      "action": "Warning",
+      "justification": "Avoid assigning text to a target with smaller size."
+    }
+  ]
+}
