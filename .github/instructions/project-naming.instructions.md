@@ -21,13 +21,21 @@ If there is a conflict, follow the stricter and safer rule.
 
 ---
 
+## Project Information Source
+
+Project prefix and suffix are defined in:
+
+```text
+.github/instructions/project-context.instructions.md
+```
+
+Do not invent project prefix or suffix.
+If the project prefix or suffix is unknown, use `<ProjectPrefix>` or `<ProjectSuffix>` as a placeholder.
+Follow existing project naming conventions when they are already visible in the workspace.
+
 ## Project Prefix or Suffix
 
 Use the project-defined prefix or suffix for custom AL objects.
-
-```text
-Project prefix/suffix: <ProjectPrefixOrSuffix>
-```
 
 Examples:
 

@@ -19,35 +19,15 @@ If there is a conflict, follow the stricter and safer rule.
 
 ---
 
-## Approved Object ID Ranges
+## Project Information Source
 
-Fill in the approved ranges.
-
-```text
-Tables: <Range>
-TableExtensions: <Range>
-Pages: <Range>
-PageExtensions: <Range>
-Codeunits: <Range>
-Reports: <Range>
-ReportExtensions: <Range>
-Queries: <Range>
-Enums: <Range>
-EnumExtensions: <Range>
-Interfaces: <Range>
-PermissionSets: <Range>
-XmlPorts: <Range>
-ControlAddIns: <Range>
-```
-
-Example placeholder:
+Approved object ID ranges are defined in:
 
 ```text
-Tables: 50100..50149
-Pages: 50100..50149
-Codeunits: 50100..50149
-Reports: 50100..50149
+.github/instructions/project-context.instructions.md
 ```
+
+This file defines how to use those ranges safely.
 
 Rules:
 

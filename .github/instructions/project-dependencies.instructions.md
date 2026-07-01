@@ -19,6 +19,14 @@ If there is a conflict, follow the stricter and safer rule.
 
 ---
 
+## Project Information Source
+
+Project dependencies are defined in:
+
+```text
+.github/instructions/project-context.instructions.md
+```
+
 ## App Dependencies
 
 List project dependencies from `app.json`.

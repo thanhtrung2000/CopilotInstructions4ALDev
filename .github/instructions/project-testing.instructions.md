@@ -19,17 +19,15 @@ If there is a conflict, follow the stricter and safer rule.
 
 ---
 
-## Test Strategy
+## Project Information Source
 
-Define project test strategy:
+Project test strategy is defined in:
 
 ```text
-Automated AL tests required: <Yes / No / Where practical>
-Manual test scenarios required: <Yes / No>
-Test libraries available: <ListAvailableTestLibraries>
-Test app available: <Yes / No>
-Test folder: <test/Codeunits or ProjectSpecificPath>
+.github/instructions/project-context.instructions.md
 ```
+
+## Test Strategy
 
 Rules:
 

@@ -19,16 +19,15 @@ If there is a conflict, follow the stricter and safer rule.
 
 ---
 
-## Localization Scope
+## Project Information Source
 
-Define localization requirements:
+Project localization requirements are defined in:
 
 ```text
-Primary language: <Language>
-Additional languages: <Languages>
-Translation files required: <Yes / No>
-Translation folder: <res/Translations or ProjectSpecificPath>
+.github/instructions/project-context.instructions.md
 ```
+
+## Localization Scope
 
 Rules:
 

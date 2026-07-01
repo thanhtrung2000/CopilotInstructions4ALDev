@@ -19,32 +19,13 @@ If there is a conflict, follow the stricter and safer rule.
 
 ---
 
-## Permission Model
+## Project Information Source
 
-Define the project permission model.
-
-```text
-Permission set naming pattern: <Pattern>
-Permission set extension naming pattern: <Pattern>
-Role model: <Admin / User / Approver / Viewer / Processor / Other>
-Least privilege required: <Yes / No>
-```
-
-Example:
+Project permission model is defined in:
 
 ```text
-Permission set naming pattern: <ProjectPrefix> <FunctionalArea>
-Permission set extension naming pattern: <ProjectPrefix> <FunctionalArea> Extension
-Role model: Admin, User, Viewer
-Least privilege required: Yes
+.github/instructions/project-context.instructions.md
 ```
-
-Rules:
-
-1. Do not invent permission model details.
-2. Follow the project permission model when available.
-3. Use least-privilege thinking.
-4. Mention permission impact when creating or changing objects.
 
 ## Permission Rules
 

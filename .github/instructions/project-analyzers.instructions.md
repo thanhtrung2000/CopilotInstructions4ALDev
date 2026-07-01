@@ -21,6 +21,14 @@ If there is a conflict, follow the stricter and safer rule.
 
 ---
 
+## Project Information Source
+
+Project type and analyzer set are defined in:
+
+```text
+.github/instructions/project-context.instructions.md
+```
+
 ## Project Analyzer Strategy
 
 Analyzer compliance is mandatory for this project.

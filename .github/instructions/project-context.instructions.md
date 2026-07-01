@@ -1,16 +1,31 @@
 ---
-applyTo: "**/*.al,app.json,.vscode/launch.json"
+applyTo: "**/*.al,app.json,.vscode/launch.json,.vscode/settings.json,.vscode/al.ruleset.json"
 ---
 
 # Project Context Instructions — AL / Business Central
 
 ## Purpose
 
-This file defines the project context for Microsoft Dynamics 365 Business Central AL development.
+This file is the single source of truth for project information used by the AL Copilot instruction framework.
 
-These instructions help Copilot understand the current project before generating, reviewing, refactoring, or documenting AL code.
+Other instruction files should not repeat project information.
 
-These rules extend:
+They should reference this file when they need project context such as:
+
+- Project name
+- Project type
+- Business Central version
+- Target environment
+- Project prefix or suffix
+- Object ID ranges
+- Dependencies
+- Analyzer setup
+- Permission model
+- Testing strategy
+- Localization requirements
+- Workspace structure
+
+These instructions extend:
 
 ```text
 .github/copilot-instructions.md
@@ -25,6 +40,8 @@ Fill in the project details below.
 
 ```text
 Project name: <ProjectName>
+Project code/name prefix: <ProjectPrefix>
+Project suffix: <ProjectSuffix>
 Project type: <AppSource / PerTenantExtension / Internal>
 Business Central target version: <BCVersion>
 Target environment: <Cloud / OnPrem / Hybrid>
@@ -66,6 +83,162 @@ Rules:
 3. If app.json context is missing, ask only when required for safe code generation.
 4. Use project metadata consistently when generating documentation or implementation notes.
 
+## Object ID Ranges
+
+Use this section as the central project object ID range reference.
+
+```text
+Tables: <Range>
+TableExtensions: <Range>
+Pages: <Range>
+PageExtensions: <Range>
+Codeunits: <Range>
+Reports: <Range>
+ReportExtensions: <Range>
+Queries: <Range>
+Enums: <Range>
+EnumExtensions: <Range>
+Interfaces: <Range>
+PermissionSets: <Range>
+XmlPorts: <Range>
+ControlAddIns: <Range>
+```
+
+Example placeholder:
+
+```text
+Tables: 50100..50149
+Pages: 50100..50149
+Codeunits: 50100..50149
+Reports: 50100..50149
+```
+
+Rules:
+
+1. Do not invent object ID ranges.
+2. If object ID range is unknown, use placeholders.
+3. Object ID usage rules are defined in:
+
+```text
+.github/instructions/project-object-ranges.instructions.md
+```
+
+## Dependencies
+
+Use this section as the central dependency reference.
+
+```text
+Dependency app name: <DependencyAppName>
+Publisher: <Publisher>
+App ID: <AppId>
+Version: <Version>
+Purpose: <Purpose>
+```
+
+Repeat for each dependency.
+
+Rules:
+
+1. Do not invent dependencies.
+2. Do not invent objects, events, procedures, or APIs from dependencies.
+3. Dependency usage rules are defined in:
+
+```text
+.github/instructions/project-dependencies.instructions.md
+```
+
+## Analyzer Setup
+
+Use this section as the central analyzer reference.
+
+```text
+Project analyzer set: <CodeCop / UICop / AppSourceCop / PerTenantExtensionCop>
+Ruleset path: ./.vscode/al.ruleset.json
+Code analysis enabled: <Yes / No>
+```
+
+Rules:
+
+1. Do not invent project analyzer requirements.
+2. Analyzer behavior rules are defined in:
+
+```text
+.github/instructions/project-analyzers.instructions.md
+```
+
+## Permission Model
+
+Use this section as the central permission model reference.
+
+```text
+Permission set naming pattern: <Pattern>
+Permission set extension naming pattern: <Pattern>
+Role model: <Admin / User / Approver / Viewer / Processor / Other>
+Least privilege required: <Yes / No>
+```
+
+Example:
+
+```text
+Permission set naming pattern: <ProjectPrefix> <FunctionalArea>
+Permission set extension naming pattern: <ProjectPrefix> <FunctionalArea> Extension
+Role model: Admin, User, Viewer
+Least privilege required: Yes
+```
+
+Rules:
+
+1. Do not invent permission model details.
+2. Follow the project permission model when available.
+3. Use least-privilege thinking.
+4. Mention permission impact when creating or changing objects.
+5. Permission and security rules are defined in:
+
+```text
+.github/instructions/project-permissions.instructions.md
+```
+
+## Testing Strategy
+
+Use this section as the central testing strategy reference.
+
+```text
+Automated AL tests required: <Yes / No / Where practical>
+Manual test scenarios required: <Yes / No>
+Test libraries available: <ListAvailableTestLibraries>
+Test app available: <Yes / No>
+Test folder: <test/Codeunits or ProjectSpecificPath>
+```
+
+Rules:
+
+1. Do not invent available test libraries.
+2. Testing rules are defined in:
+
+```text
+.github/instructions/project-testing.instructions.md
+```
+
+## Localization Requirements
+
+Use this section as the central localization reference.
+
+```text
+Primary language: <Language>
+Additional languages: <Languages>
+Translation files required: <Yes / No>
+Translation folder: <res/Translations or ProjectSpecificPath>
+```
+
+Rules:
+
+1. Do not invent localization requirements.
+2. Localization rules are defined in:
+
+```text
+.github/instructions/project-localization.instructions.md
+```
+
 ## Workspace Structure
 
 Use the project folder structure if one already exists.
@@ -86,8 +259,8 @@ src/
   Permissions/
 
 test/
+  Codeunits/
   Libraries/
-  Resources/
 
 res/
   Translations/
@@ -111,66 +284,14 @@ Define the current development mode:
 Development mode: <NewProject / ExistingProject / Maintenance / Refactoring / Upgrade / AppSourcePreparation>
 ```
 
-### NewProject
+Rules:
 
-When the project is new:
-
-1. Use a clean and predictable folder structure.
-2. Create reusable and maintainable AL patterns.
-3. Define naming and object ID rules early.
-4. Avoid overengineering.
-5. Use placeholders when project-specific values are not ready.
-
-### ExistingProject
-
-When working in an existing project:
-
-1. Follow existing project conventions.
-2. Avoid broad restructuring.
-3. Prefer minimal safe changes.
-4. Do not rename existing objects unless explicitly requested.
-5. Reuse existing objects and patterns where practical.
-
-### Maintenance
-
-When fixing or maintaining existing functionality:
-
-1. Preserve existing behavior.
-2. Fix only the requested issue.
-3. Avoid unrelated refactoring.
-4. Mention regression risk.
-5. Suggest targeted tests.
-
-### Refactoring
-
-When refactoring:
-
-1. Preserve behavior unless the developer requests a behavior change.
-2. Improve readability and maintainability.
-3. Avoid unnecessary abstraction.
-4. Avoid broad rewrites unless justified.
-5. Suggest regression tests.
-
-### Upgrade
-
-When supporting upgrade work:
-
-1. Consider schema changes carefully.
-2. Mention breaking changes.
-3. Consider obsolete objects, fields, or enum values.
-4. Consider upgrade codeunits if required.
-5. Suggest upgrade and regression testing.
-
-### AppSourcePreparation
-
-When preparing for AppSource:
-
-1. Consider AppSourceCop.
-2. Review app metadata.
-3. Avoid unsupported patterns.
-4. Review public APIs and breaking changes.
-5. Review permission and data exposure.
-6. Review analyzer suppressions carefully.
+1. For new projects, use clean and predictable patterns.
+2. For existing projects, follow existing conventions.
+3. For maintenance, preserve existing behavior.
+4. For refactoring, avoid behavior changes unless requested.
+5. For upgrades, consider schema and compatibility impact.
+6. For AppSource preparation, consider AppSourceCop and public contract stability.
 
 ## Existing Object Discovery
 
@@ -196,60 +317,24 @@ Rules:
 3. If a pattern is unclear, state the assumption.
 4. Prefer consistency with the project over generic examples.
 
-### Project Setup Review
-
-When asked to review project setup, check:
-
-- app.json
-- .vscode/launch.json
-- .vscode/settings.json
-- .vscode/al.ruleset.json
-- Folder structure
-- Dependencies
-- Symbols
-- Object ID ranges
-- Analyzer configuration
-- Permission set structure
-- Test structure
-- Translation resources
-
-Use this output format:
-
-```text
-## Project Setup Review
-
-### Ready
-
-- ...
-
-### Missing or Incomplete
-
-- ...
-
-### Risks
-
-- ...
-
-### Recommended Next Steps
-
-- ...
-```
-
 ## Context Output Behavior
 
 When project context affects the answer, include:
 
 ```text
 ## Project Context Used
- 
+
+- Project name:
 - Project type:
+- Prefix/suffix:
 - Target environment:
 - App/runtime version:
-- Folder structure:
-- Naming/prefix:
 - Object range:
 - Analyzer set:
 - Dependencies:
+- Permission model:
+- Testing strategy:
+- Localization:
 - Assumptions:
 ```
 
@@ -262,11 +347,15 @@ Use placeholders when project context is missing:
 ```text
 <ProjectName>
 <ProjectPrefix>
+<ProjectSuffix>
 <ProjectType>
 <BCVersion>
 <AppId>
 <ObjectIdRange>
 <DependencyAppName>
+<PermissionSetName>
+<TestLibraryName>
+<Language>
 ```
 
 Do not replace placeholders with invented values.
@@ -280,9 +369,12 @@ Do not:
 3. Invent app ID or publisher.
 4. Invent object ID range.
 5. Invent dependencies.
-6. Invent folder structure when one already exists.
-7. Rename or move files unless explicitly requested.
-8. Assume AppSource or PTE target without confirmation.
-9. Generate deployment or publishing steps unless explicitly requested.
+6. Invent permission model.
+7. Invent test libraries.
+8. Invent localization requirements.
+9. Invent folder structure when one already exists.
+10. Rename or move files unless explicitly requested.
+11. Assume AppSource or PTE target without confirmation.
+12. Generate deployment or publishing steps unless explicitly requested.
 
 ---
