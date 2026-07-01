@@ -13,7 +13,7 @@ Developers should use:
 `.github/copilot-instructions.md`
 For mandatory AL development rules.
 
-`.github/copilot-instructions.md`
+`.github/instructions/`
 For project-specific AL development rules.
 
 `.github/prompts/`
